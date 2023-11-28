@@ -40,22 +40,18 @@ def create_mlp_model(input_shape: Tuple[int, int, int], num_classes: int) -> Seq
     # Adding hidden layers to the model
     # Layer 2: Fully connected layer with 512 neurons,
     # followed by a relu activation function
-    # TODO
     model.add(Dense(units = 512,activation = 'relu'))
 
     # Layer 3: Fully connected layer with 1024 neurons,
     # followed by a relu activation function
-    # TODO
     model.add(Dense(units = 1024,activation = 'relu'))
 
     # Layer 4: Fully connected layer with 512 neurons,
     # followed by a relu activation function
-    # TODO
     model.add(Dense(units = 512,activation = 'relu'))
 
     # Layer 5: Classification layer with num_classes output units,
     # followed by a softmax activation function
-    # TODO
     model.add(Dense(units = num_classes,activation = 'softmax'))
 
     # Print a summary of the model architecture
@@ -89,39 +85,31 @@ def create_lenet_model(
 
     # Layer 1: Convolutional layer with 6 filters, each 3x3 in size,
     # followed by a tanh activation function
-    # TODO
     model.add(Conv2D(filters = 6, kernel_size =(3,3),activation = 'tanh'))
 
     # Layer 2: Average pooling layer with 2x2 pool size
-    # TODO
     model.add(AveragePooling2D(pool_size = (2,2))) 
 
     # Layer 3: Convolutional layer with 16 filters, each 3x3 in size,
     # followed by a tanh activation function
-    # TODO
     model.add(Conv2D(filters = 16, kernel_size =(3,3),activation = 'tanh'))
 
     # Layer 4: Average pooling layer with 2x2 pool size
-    # TODO
     model.add(AveragePooling2D(pool_size = (2,2))) 
 
     # Layer 5: Flatten layer to convert the output of the previous layer to a 1D array
-    # TODO
     model.add(Flatten())
 
     # Layer 6: Fully connected layer with 120 neurons,
     # followed by a tanh activation function
-    # TODO
     model.add(Dense(units=120,activation = 'tanh'))
 
     # Layer 7: Fully connected layer with 84 neurons,
     # followed by a tanh activation function
-    # TODO
     model.add(Dense(units=84,activation = 'tanh'))
 
     # Layer 8: Classification layer with num_classes output units,
     # followed by a softmax activation function
-    # TODO
     model.add(Dense(units = num_classes,activation = 'softmax'))
 
     # Print a summary of the model architecture
@@ -144,19 +132,17 @@ def create_resnet50_model(
     Returns:
         A Sequential model object.
     """
-    # Create ResNet50 model for transfer learning (fine-tuning).
-    # Use `tensorflow.keras.applications.ResNet50()` and make sure to:
-    #   1. Use "imagenet" weights
-    #   2. Don't include the classification layer (include_top=False)
-    #   3. Define model input_shape equals to this function input_shape
-    # TODO
+    # ResNet50 model, transfer learning (fine-tuning).
+    # `tensorflow.keras.applications.ResNet50()` with:
+    #   1. "imagenet" weights
+    #   2. Without the classification layer (include_top=False)
+    #   3. input_shape equals to this function input_shape
     resnet = ResNet50(
         weights = 'imagenet',
         input_shape=(input_shape),
         include_top = False
     )
 
-    # You shouldn't change the code below
     # Freeze all layers in the ResNet50 model
     for layer in resnet.layers:
         layer.trainable = False
@@ -165,11 +151,9 @@ def create_resnet50_model(
     model = Sequential()
 
     # Add the resnet model to the Sequential model.
-    # We don't need to add Input or Rescaling layers to the model because
-    # ResNet50 model already have hose layers inside.
     model.add(resnet)
 
-    # Add a flatten layer to convert the output of the model to a 1D array
+    # Add flatten layer to convert the output of the model to a 1D array
     model.add(Flatten())
 
     # Add a dropout layer with to avoid over-fitting
@@ -177,9 +161,6 @@ def create_resnet50_model(
 
     # -- > testing: add more layers
     # model.add(Dense(1024,activation = 'relu')) # kernel_regularizer = regularizers.L2(0.01))
-
-    # -- > testing: add more layers
-    # model.add(Dense(64,activation = 'relu',kernel_regularizer = regularizers.L1(0.01)))
 
     # Add a classification layer with num_classes output units,
     # followed by a softmax activation function
