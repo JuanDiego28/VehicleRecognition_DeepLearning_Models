@@ -161,7 +161,7 @@ def create_resnet50_model(
 
     # -- > testing: add more layers
     # model.add(Dense(1024,activation = 'relu')) # kernel_regularizer = regularizers.L2(0.01))
-
+    
     # Add a classification layer with num_classes output units,
     # followed by a softmax activation function
     model.add(Dense(num_classes, activation="softmax"))
