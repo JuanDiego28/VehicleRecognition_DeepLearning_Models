@@ -49,6 +49,7 @@ for subdir, dirs, files in os.walk(os.path.join(DATASET_AUGMENTED_FOLDER,"train"
                     i += 1
                     if i > 3: # generate 4 images for each original one
                         break
+                    
             except Exception as e:
                 print(f"Error processing {os.path.join(subdir, filename)}: {e}")
                 continue
