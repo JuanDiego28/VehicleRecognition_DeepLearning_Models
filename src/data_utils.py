@@ -12,6 +12,7 @@ import seaborn as sns
 def download_datasets(output_folder=config.DATASET_ROOT_PATH):
     """
     Download from GDrive all the needed datasets for the project.
+    
     """
     # Create folder if doesn't exist
     if not os.path.exists(output_folder):
